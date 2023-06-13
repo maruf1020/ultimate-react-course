@@ -142,3 +142,45 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+//Destructuring -
+const books = getBooks();
+
+const book = getBook(1);
+book;
+
+// const title = book.title;
+// const author = book.author;
+// const genres = book.genres;
+const { title: name, author, genres } = book;
+console.log("name:", name, "   author:", author);
+
+
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+// const otherGenres = genres.slice(2);
+//... rest operator in this case
+//we must need to use rest operator in the last
+[primaryGenre, secondaryGenre, ...otherGenres] = genres;
+console.log("primaryGenre:", primaryGenre, "   secondaryGenre:", secondaryGenre, "   otherGenres:", otherGenres);
+
+
+//SPREAD OPERATOR IN ARRAY
+//Here I will use ... syntax to spread the array (spreed operator)
+//There is no condition to use spread operator, We can use it anywhere in the array
+const newArray = ["Bangladeshi", "dark fantasy", "City life"];
+const newGenres = [...genres, "dark fantasy", ...newArray];
+console.log(newGenres);
+
+//SPREAD OPERATOR IN OBJECT
+const updatedBook = {
+  //spread operator
+  ...book,
+  //we can update any property of the object
+  title: "The Lord of the Rings: The Fellowship of the Ring 2000",
+  //we can update any property of the object
+  pages: 1216 + 100,
+  //we can add new property of the object
+  publicationDate: "1954-07-29"
+};
+console.log(updatedBook);
