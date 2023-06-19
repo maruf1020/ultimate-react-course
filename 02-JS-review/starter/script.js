@@ -856,18 +856,98 @@ let peopleObject3 = [{
   console.log(values);
 
 
+  //.............................................//
   // 32. from()
+  //.............................................//
+  // from() method creates a new, shallow-copied Array instance from an array-like or iterable object.
+  // from() method does not change the original array.
+  // from() method can take 2 arguments: arrayLike, mapFn(currentValue, index, array).
+  // Example
+  const arrayLike = { 0: "a", 1: "b", 2: "c", length: 3 };
+  const array = Array.from(arrayLike);
+  console.log(array);
+
+  //Example 2
+  let num = "12345";
+  const numArray = Array.from(num);
+  console.log(numArray);
+
+  // Example 3 
+  const friends = ["siam", "miraz", "saif", "miraz", "saif"];
+  console.log(new Set(friends));
+  const uniqueFriends = Array.from(new Set(friends));
+  console.log(uniqueFriends);
+
+
+  //.............................................//
   // 33. isArray()
+  //.............................................//
+  // isArray() method determines whether the passed value is an Array.
+  // isArray() method does not change the original array.
+  // isArray() method can take 1 argument: value.
+  // Example
+  const isArray = Array.isArray([1, 2, 3, 4, 5]);
+  console.log(isArray);
+
+  //.............................................//
   // 34. of()
-  // 35. lastItem()
-  // 36. firstItem()
-  // 37. removeItem()
-  // 38. removeItemByIndex()
-  // 39. removeItems()
-  // 40. removeItemsByIndex()
-  // 41. removeItemsByValue()
-  // 42. removeItemsByPredicate()
-  // 43. removeItemsByPredicateIndex()
-  // 44. removeItemsByPredicateValue()
-  // 45. removeItemsByPredicateIndexValue()
+  //.............................................//
+  // of() method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments.
+  // of() method does not change the original array.
+  // of() method can take any number of arguments.
+  // Example
+  const array1 = Array.of(1, 2, 3, 4, 5);
+  console.log(array1);
+
+  //example 2
+  console.log(Array.of('foo', 2, 'bar', true));
+  console.log(Array.of());
+  // Expected output: Array []
+
+  //example 3
+  console.log(Array.of(7));
+  console.log(Array(7));
 }
+
+
+// Working with Immutable Arrays
+const newBook = {
+  id: 007,
+  title: "The Alchemist",
+  author: "Paulo Coelho",
+}
+
+//add newBook to books array
+const newBooks = [...books, newBook];
+console.log(newBooks);
+
+//remove book with id 2
+const removedBook = books.filter(book => book.id !== 2);
+
+//update book with id 3
+const updatedBook1 = books.map(book => {
+  if (book.id === 3) {
+    return { ...book, title: "The Alchemist", author: "Paulo Coelho" }
+  }
+  return book;
+})
+
+console.log(updatedBook1);
+
+
+
+//Promise
+fetch('https://jsonplaceholder.typicode.com/todos/2')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
+console.log("Hello World");
+
+//Same work using async await
+async function fetchTodo() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/2');
+  const data = await res.json();
+  console.log(data);
+}
+fetchTodo();
